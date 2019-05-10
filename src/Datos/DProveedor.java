@@ -118,7 +118,7 @@ public class DProveedor extends Template {
     @Override
     protected String addT() throws Exception {
         return "INSERT INTO proveedor("
-                + "codigo, nombre, telefono, direccion, ci, estado) "
+                + "codigo, nombre, telefono, direccion, estado) "
                 + "VALUES ("
                 + getCodigo() + ", "
                 + getNombre() + ", "

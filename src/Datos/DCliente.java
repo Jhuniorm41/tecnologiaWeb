@@ -10,10 +10,99 @@ package Datos;
  * @author Junior Guzman
  */
 public class DCliente extends Template {
- 
+    
+    
     private int id;
+    private String codigo;
     private int nit;
-    private DPersona persona;
+    private String nombre;
+    private String telefono;
+    private String estado;
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the codigo
+     */
+    public String getCodigo() {
+        return codigo;
+    }
+
+    /**
+     * @param codigo the codigo to set
+     */
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    /**
+     * @return the nit
+     */
+    public int getNit() {
+        return nit;
+    }
+
+    /**
+     * @param nit the nit to set
+     */
+    public void setNit(int nit) {
+        this.nit = nit;
+    }
+
+    /**
+     * @return the nomnbre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nomnbre the nomnbre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+ 
 
     public DCliente() throws Exception {
     }
@@ -22,67 +111,62 @@ public class DCliente extends Template {
         this.id = id;
     }
 
-    public DCliente(int id, int nit) throws Exception {
+    public DCliente(int id, String codigo, int nit, String nombre, String telefono, String estado) throws Exception {
         this.id = id;
+        this.codigo = codigo;
         this.nit = nit;
+        this.telefono = telefono;
+        this.estado = estado;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getNit() {
-        return nit;
-    }
-
-    public void setNit(int nit) {
-        this.nit = nit;
-    }
-
-    public DPersona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(DPersona persona) {
-        this.persona = persona;
-    }
 
     @Override
     public String toString() {
              return "Clientes{" +
                 "Nit =" + nit +
-                ", Nombre=" + persona.getNombre() +
+                ", Nombre=" + nombre +
+                ", telefono=" + telefono +
                 '}';
     }
     
     
     @Override
     protected String addT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "INSERT INTO cliente("
+                + "codigo, nit, nombre, telefono, estado) "
+                + "VALUES ("
+                + getCodigo() + ", "
+                + getNit() + ", "
+                + getNombre() + ", "
+                + getTelefono()+ ", "
+                + "'activo');"; 
     }
 
     @Override
     protected String updateT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return "UPDATE cliente " +
+                "SET nit= "+ getNit() +", nombre= " + getNombre() + ", telefono= " + getTelefono() +
+                "WHERE id ="+ getId() +";";
     }
 
     @Override
     protected String deleteT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return "UPDATE cliente" +
+                " SET estado= 'eliminado" +
+                " WHERE id ="+ getId() + ";";
     }
 
     @Override
     protected String getAllT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return "SELECT id, codigo, nombre, telefono" +
+                " FROM cliente " +
+                " WHERE estado <> 'eliminado" +
+                " ORDER BY id ASC;";
     }
 
     @Override
     protected int currentColumn() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 3;
     }
     
 }
