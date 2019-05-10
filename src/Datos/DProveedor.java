@@ -151,7 +151,7 @@ public class DProveedor extends Template {
 
     @Override
     protected int currentColumn() throws Exception {
-        return 3;
+        return 2;
     }
 
 }

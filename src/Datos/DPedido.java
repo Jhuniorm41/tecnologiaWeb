@@ -20,7 +20,7 @@ public class DPedido extends Template {
     private String descripcion;
     private String estado;
     private BigDecimal montoTotal;
-    private DCliente clienteid;
+    private DCliente cliente;
 
     public DPedido() throws Exception {
     }
@@ -86,12 +86,12 @@ public class DPedido extends Template {
         this.montoTotal = montoTotal;
     }
 
-    public DCliente getClienteid() {
-        return clienteid;
+    public DCliente getCliente() {
+        return cliente;
     }
 
-    public void setClienteid(DCliente clienteid) {
-        this.clienteid = clienteid;
+    public void setCliente(DCliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -99,32 +99,49 @@ public class DPedido extends Template {
         return "PEDIDO{"
                 + "codigo=" + codigo
                 + ", descripcion=" + descripcion
+                + ", monto=" + montoTotal
+                + ", cliente=" + cliente.getNombre()
                 + '}';
     }
 
     @Override
     protected String addT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "INSERT INTO pedido(" +
+                "codigo, fecha_registro, descripcion, estado, monto_total, clienteID) " +
+                "VALUES ("
+                + getCodigo() +", "
+                + getFechaRegistro() +", "
+                + getDescripcion() +", "
+                + getEstado() +", "
+                + getMontoTotal() +", "
+                + getCliente().getId() + ");";
     }
 
     @Override
     protected String updateT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                return "UPDATE pedido " +
+                "SET descripcion= "+ getDescripcion() +", monto= "+ getMontoTotal() +
+                "WHERE id ="+ getId() +";";
     }
 
     @Override
     protected String deleteT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return "UPDATE pedido" +
+                " SET estado = 'eliminado" +
+                " WHERE id ="+ getId() +";";
     }
 
     @Override
     protected String getAllT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          return "SELECT p.codigo, p.monto_total, c.nombre" +
+                " FROM pedido p, cliente c " +
+                " WHERE p.estado <> 'eliminado' and p.clienteID = c.id" +
+                " ORDER BY id ASC;";
     }
 
     @Override
     protected int currentColumn() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 4;
     }
 
 }
