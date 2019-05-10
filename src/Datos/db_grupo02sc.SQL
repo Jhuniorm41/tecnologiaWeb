@@ -40,7 +40,6 @@ CREATE TABLE Administrativo
 	id bigint default nextval('seq_administrativo_id'),
 	codigo varchar(15) NOT NULL,
 	nombre varchar(50) NOT NULL,
-	apellido varchar(30) NOT NULL,
 	telefono varchar(11) NOT NULL,
 	estado varchar(10) NOT NULL,
 	cargo varchar(15) NOT NULL,
@@ -79,7 +78,7 @@ CREATE TABLE Usuario
 	usuario varchar(15) NOT NULL,
 	contrasenia varchar(15) NOT NULL,
 	estado varchar(10) NOT NULL,
-	personaID bigint NOT NULL,
+	administrativoID bigint NOT NULL,
 	UNIQUE (id)
 )
 ;
@@ -243,8 +242,8 @@ PRIMARY KEY (id)
 ;
 
 
-ALTER TABLE  Administrativo ADD CONSTRAINT FK_usuario_administrativo
-FOREIGN KEY (id) REFERENCES Usuario (id)
+ALTER TABLE  Usuario ADD CONSTRAINT FK_usuario_administrativo
+FOREIGN KEY (AdministrativoID) REFERENCES Administrativo (id)
 ;
 ALTER TABLE  Pedido ADD CONSTRAINT FK_pedido_cliente
 FOREIGN KEY (clienteID) REFERENCES Pedido (id)
