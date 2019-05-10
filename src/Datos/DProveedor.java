@@ -93,12 +93,7 @@ public class DProveedor extends Template {
     public DProveedor() throws Exception {
     }
 
-    public DProveedor(int id) throws Exception {
-        this.id = id;
-    }
-
-    public DProveedor(int id, String codigo, String nombre, String telefono, String direccion, String ci, String estado) throws Exception {
-        this.id = id;
+    public DProveedor(String codigo, String nombre, String telefono, String direccion, String ci, String estado) throws Exception {
         this.codigo = codigo;
         this.nombre = nombre;
         this.telefono = telefono;

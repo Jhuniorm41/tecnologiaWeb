@@ -107,12 +107,8 @@ public class DCliente extends Template {
     public DCliente() throws Exception {
     }
 
-    public DCliente(int id) throws Exception {
-        this.id = id;
-    }
-
-    public DCliente(int id, String codigo, int nit, String nombre, String telefono, String estado) throws Exception {
-        this.id = id;
+    public DCliente(String codigo, int nit, String nombre, String telefono, String estado) throws Exception {
+  
         this.codigo = codigo;
         this.nit = nit;
         this.telefono = telefono;

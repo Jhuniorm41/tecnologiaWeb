@@ -28,8 +28,8 @@ public class DAdministrativo extends Template {
         this.id = id;
     }
 
-    public DAdministrativo(int id, String codigo, String nombre, String telefono, String estado, String cargo, Date fechaIngreso) throws Exception {
-        this.id = id;
+    public DAdministrativo(String codigo, String nombre, String telefono, String estado, String cargo, Date fechaIngreso) throws Exception {
+     
         this.codigo = codigo;
         this.nombre = nombre;
         this.telefono = telefono;

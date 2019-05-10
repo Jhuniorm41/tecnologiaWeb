@@ -25,12 +25,8 @@ public class DPedido extends Template {
     public DPedido() throws Exception {
     }
 
-    public DPedido(int id) throws Exception {
-        this.id = id;
-    }
 
-    public DPedido(int id, String codigo, Date fechaRegistro, String descripcion, String estado, BigDecimal montoTotal) throws Exception {
-        this.id = id;
+    public DPedido(String codigo, Date fechaRegistro, String descripcion, String estado, BigDecimal montoTotal) throws Exception {
         this.codigo = codigo;
         this.fechaRegistro = fechaRegistro;
         this.descripcion = descripcion;

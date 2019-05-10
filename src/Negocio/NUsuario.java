@@ -1,19 +1,19 @@
 package Negocio;
 
-import Datos.DUsuario;
+import Datos.DUsers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NUsuario {
 
-    private DUsuario o;
+    private DUsers o;
 
     public NUsuario() throws Exception{
-        this.o = new DUsuario();
+        this.o = new DUsers();
     }
 
-    public DUsuario getInfo(){
+    public DUsers getInfo(){
         return o;
     }
 
@@ -58,13 +58,13 @@ public class NUsuario {
         }
     }
 
-    private List<DUsuario> getAll() throws Exception{
-        List<DUsuario> ob = new ArrayList<>();
+    private List<DUsers> getAll() throws Exception{
+        List<DUsers> ob = new ArrayList<>();
         List<Object> lista = (List<Object>) this.o.getAll();
         try {
             for (Object objecto : lista) {
                 List<Object> obj = (List<Object>) objecto;
-                DUsuario oo = new DUsuario();
+                DUsers oo = new DUsers();
 
                 oo.setId(Integer.valueOf(obj.get(0).toString()));
                 oo.setName(obj.get(1).toString());
@@ -87,7 +87,7 @@ public class NUsuario {
     public String Mostrar() throws Exception {
         String rx = "USUARIOS \n\n";
         try {
-            List<DUsuario> lObj = this.getAll();
+            List<DUsers> lObj = this.getAll();
 
             rx = "<center><h2>LISTA DE USUARIOS</h2></center><br>";
             rx += " <table style=\"width:100%; border-style: outset; text-align: left;\" >" +
@@ -105,7 +105,7 @@ public class NUsuario {
                     "                   </tr>\n" +
                     "             </thead>\n" +
                     "                  <tbody> ";
-            for (DUsuario obj : lObj) {
+            for (DUsers obj : lObj) {
                 rx = rx +
                         "<tr style=\"\">\n" +
                         "   <td>"+ obj.getId() + "</td>\n" +
