@@ -5,8 +5,6 @@
  */
 package Datos;
 
-import java.util.Collection;
-
 /**
  *
  * @author Junior Guzman
@@ -132,23 +130,28 @@ public class DProveedor extends Template {
     @Override
     protected String updateT() throws Exception {
          return "UPDATE proveedor " +
-                "SET codigo= "+ getMonto() +", updated_at= NOW() " +
+                "SET nombre= "+ getNombre() +", telefono= " + getTelefono() + ", direccion= " + getDireccion() +
                 "WHERE id ="+ getId() +";";
     }
 
     @Override
     protected String deleteT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "UPDATE proveedor" +
+                " SET estado= 'eliminado'" +
+                " WHERE id ="+ getId() +";";
     }
 
     @Override
     protected String getAllT() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return "SELECT id, codigo, nombre, telefono, direccion" +
+                " FROM proveedor " +
+                " WHERE estado <> 'eliminado" +
+                " ORDER BY id ASC;";
     }
 
     @Override
     protected int currentColumn() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 3;
     }
 
 }
