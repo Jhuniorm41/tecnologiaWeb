@@ -134,7 +134,6 @@ CREATE TABLE Producto
 	precio decimal(10,2) NOT NULL,
 	costo decimal(10,2) NOT NULL,
 	estado varchar(10) NOT NULL,
-	productoID bigint NOT NULL,
 	loteID bigint NOT NULL,
 	tipoProductoID bigint NOT NULL,
 	UNIQUE (id)
@@ -188,7 +187,7 @@ CREATE TABLE Entrega
 	id bigint default nextval('seq_entrega_id'),
 	codigo varchar(20) NOT NULL,
 	fecha_registro timestamp NOT NULL,
-	fechar_entrega timestamp NOT NULL,
+	fecha_entrega timestamp NOT NULL,
 	destino varchar(50) NOT NULL,
 	estado varchar(10) NOT NULL,
 	administrativoID bigint NOT NULL,
@@ -277,7 +276,7 @@ FOREIGN KEY (loteID) REFERENCES Lote (id)
 ;
 
 ALTER TABLE  Producto ADD CONSTRAINT FK_producto_tipo_producto
-FOREIGN KEY (productoID) REFERENCES Producto (id)
+FOREIGN KEY (tipoProductoID) REFERENCES Producto (id)
 ;
 
 ALTER TABLE  Stock ADD CONSTRAINT FK_stock_almacen
